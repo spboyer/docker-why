@@ -1,0 +1,25 @@
+version: '2.1'
+services:
+
+  mssqldata:
+    image: microsoft/mssql-server-linux:latest
+    entrypoint: /bin/bash
+
+  mssql:
+    image: microsoft/mssql-server-linux:latest
+    ports:
+      - 1433:1433
+    volumes:
+      - /var/opt/mssql
+      # we copy our scripts onto the container
+      - ./sql:/usr/src/app
+    # bash will be executed from that path, our scripts folder
+    working_dir: /usr/src/app
+    # run the entrypoint.sh that will import the data AND sqlserver
+    command: sh -c ' chmod +x ./entrypoint.sh; ./entrypoint.sh & /opt/mssql/bin/sqlservr;'
+    environment:
+      ACCEPT_EULA: Y
+      SA_PASSWORD: P@55w0rd
+    # don't use this if you don't want to persit data between docker up and down
+    volumes_from:
+      - mssqldata
