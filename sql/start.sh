@@ -1,8 +1,8 @@
 #!/bin/bash
 wait_time=15s
 
-echo creating resources starts in $wait_time
-sleep "$wait_time"
+echo creating resources in $wait_time
+sleep $wait_time
 echo starting...
 
 /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P $SA_PASSWORD -i ./init.sql
