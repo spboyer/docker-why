@@ -1,9 +1,5 @@
-version: '2.1'
+version: '3.0'
 services:
-
-  mssqldata:
-    image: microsoft/mssql-server-linux:latest
-    entrypoint: /bin/bash
 
   mssql:
     image: microsoft/mssql-server-linux:latest
@@ -18,8 +14,5 @@ services:
     # run the entrypoint.sh that will import the data AND sqlserver
     command: sh -c ' chmod +x ./start.sh; ./start.sh & /opt/mssql/bin/sqlservr;'
     environment:
-      ACCEPT_EULA: Y
+      ACCEPT_EULA: 'Y'
       SA_PASSWORD: P@55w0rd
-    # don't use this if you don't want to persit data between docker up and down
-    volumes_from:
-      - mssqldata
