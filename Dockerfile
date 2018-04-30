@@ -7,4 +7,5 @@ WORKDIR /usr/src/app
 COPY ./sql .
 
 
+ENTRYPOINT [ "sh", "start.sh" ]
 
