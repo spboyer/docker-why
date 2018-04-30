@@ -6,5 +6,5 @@ ENV SA_PASSWORD=P@ssw0rd
 WORKDIR /usr/src/app
 COPY ./sql .
 
-
+ENTRYPOINT [ "sh", "start.sh" ]
 
