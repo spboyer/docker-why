@@ -1,0 +1,13 @@
+version: '3.4'
+
+services:
+  namesweb:
+    image: namesweb
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+    ports:
+      - "57270:80"

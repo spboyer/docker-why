@@ -15,4 +15,4 @@ services:
     command: sh -c ' chmod +x ./start.sh; ./start.sh & /opt/mssql/bin/sqlservr;'
     environment:
       ACCEPT_EULA: 'Y'
-      SA_PASSWORD: P@55w0rd
+      SA_PASSWORD: P@$$w0rdP@$$w0rd
