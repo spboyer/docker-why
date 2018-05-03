@@ -5,9 +5,9 @@ EXPOSE 44348
 
 FROM microsoft/dotnet:2.1-sdk-alpine AS build
 WORKDIR /src
-COPY namesweb.csproj .
+COPY namesweb/namesweb.csproj .
 RUN dotnet restore
-COPY . .
+COPY namesweb/. .
 WORKDIR /src
 RUN dotnet build -c Release -o /app
 

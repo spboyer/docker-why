@@ -3,17 +3,33 @@ services:
 
   mssql:
     image: microsoft/mssql-server-linux:latest
-    container_name: db
+    container_name: mssql
     ports:
       - 1433:1433
     volumes:
       - /var/opt/mssql
       # we copy our scripts onto the container
-      - ./sql:/usr/src/app
+      - ./database/sql:/usr/src/app
     # bash will be executed from that path, our scripts folder
     working_dir: /usr/src/app
     # run the entrypoint.sh that will import the data AND sqlserver
     command: sh -c ' chmod +x ./start.sh; ./start.sh & /opt/mssql/bin/sqlservr;'
     environment:
       ACCEPT_EULA: 'Y'
-      SA_PASSWORD: P@$$w0rdP@$$w0rd
+      SA_PASSWORD: P@55w0rd
+
+  namesweb:
+    depends_on:
+      - mssql
+    image: namesweb
+    build:
+      context: .
+      dockerfile: namesweb/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+     # - ASPNETCORE_URLS=http://+:80;https://+:443
+      - ASPNETCORE_URLS=http://+:80
+     # - ASPNETCORE_HTTPS_PORT=44348
+    ports:
+      - "57270:80"
+     # - "44348:443"
