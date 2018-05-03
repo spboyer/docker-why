@@ -7,11 +7,12 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace namesweb.Pages
 {
-    public class IndexModel : PageModel
+  public class IndexModel : PageModel
+  {
+    public string Message { get; set; }
+    public void OnGet()
     {
-        public void OnGet()
-        {
-
-        }
+      Message = "Your application description page.";
     }
+  }
 }

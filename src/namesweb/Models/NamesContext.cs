@@ -8,6 +8,6 @@ public class NamesContext : DbContext
   {
   }
 
-  public DbSet<NamesContext> Names { get; set; }
+  public DbSet<Name> Names { get; set; }
   }
 }
