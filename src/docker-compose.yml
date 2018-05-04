@@ -27,9 +27,11 @@ services:
       dockerfile: namesweb/Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-     # - ASPNETCORE_URLS=http://+:80;https://+:443
-      - ASPNETCORE_URLS=http://+:80
-     # - ASPNETCORE_HTTPS_PORT=44348
+      - ASPNETCORE_URLS=http://+:80;https://+:443
+      - ASPNETCORE_HTTPS_PORT=44348
     ports:
       - "57270:80"
-     # - "44348:443"
+      - "44348:443"
+    volumes:
+      - ${HOME}/.microsoft/usersecrets/:/root/.microsoft/usersecrets
+      - ${HOME}/.aspnet/https:/root/.aspnet/https/

@@ -1,7 +1,8 @@
 FROM microsoft/dotnet:2.1-aspnetcore-runtime-alpine AS base
 WORKDIR /app
-EXPOSE 57270
-EXPOSE 44348
+#EXPOSE 57270
+#EXPOSE 44348
+EXPOSE 443
 
 FROM microsoft/dotnet:2.1-sdk-alpine AS build
 WORKDIR /src
