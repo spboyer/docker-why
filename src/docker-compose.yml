@@ -8,11 +8,10 @@ services:
       - 1433:1433
     volumes:
       - /var/opt/mssql
-      # we copy our scripts onto the container
       - ./database/sql:/usr/src/app
     # bash will be executed from that path, our scripts folder
     working_dir: /usr/src/app
-    # run the entrypoint.sh that will import the data AND sqlserver
+    # run the entrypoint.sh that will import the data AND 
     command: sh -c ' chmod +x ./start.sh; ./start.sh & /opt/mssql/bin/sqlservr;'
     environment:
       ACCEPT_EULA: 'Y'
@@ -23,12 +22,11 @@ services:
       - mssql
     image: namesweb
     build:
-      context: .
-      dockerfile: namesweb/Dockerfile
+      context: ./namesweb
+      dockerfile: Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_URLS=http://+:80;https://+:443
-      - ASPNETCORE_HTTPS_PORT=44348
+      - ASPNETCORE_URLS=http://+:80
     ports:
       - "57270:80"
       - "44348:443"

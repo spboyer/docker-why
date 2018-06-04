@@ -6,9 +6,9 @@ EXPOSE 443
 
 FROM microsoft/dotnet:2.1-sdk-alpine AS build
 WORKDIR /src
-COPY namesweb/namesweb.csproj .
+COPY namesweb.csproj .
 RUN dotnet restore
-COPY namesweb/. .
+COPY . .
 WORKDIR /src
 RUN dotnet build -c Release -o /app
 
