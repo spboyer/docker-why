@@ -11,7 +11,7 @@ services:
       - ./database/sql:/usr/src/app
     # bash will be executed from that path, our scripts folder
     working_dir: /usr/src/app
-    # run the entrypoint.sh that will import the data AND 
+    # run the entrypoint.sh that will import the data AND
     command: sh -c ' chmod +x ./start.sh; ./start.sh & /opt/mssql/bin/sqlservr;'
     environment:
       ACCEPT_EULA: 'Y'
@@ -21,6 +21,7 @@ services:
     depends_on:
       - mssql
     image: namesweb
+    container_name: namesweb
     build:
       context: ./namesweb
       dockerfile: Dockerfile

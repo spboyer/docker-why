@@ -12,7 +12,7 @@ echo 'creating Names Table'
 /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P $SA_PASSWORD -i ./data/NameTable.sql
 
 echo 'importing data...'
-/opt/mssql-tools/bin/bcp Names in data/Names.csv -S 0.0.0.0 -U sa -P $SA_PASSWORD -d Names -c -t ','
+/opt/mssql-tools/bin/bcp Names in data/Names.csv -S 0.0.0.0 -U sa -P $SA_PASSWORD -d Names -F2 -c -t ','
 
 echo 'add uniqueid column'
 /opt/mssql-tools/bin/sqlcmd -S localhost -d Names -U SA -P $SA_PASSWORD -I -Q "ALTER TABLE Names ADD ID UniqueIdentifier DEFAULT newid() NOT NULL;"
